@@ -20,7 +20,7 @@ import revxrsal.commands.annotation.DefaultFor
 import revxrsal.commands.annotation.Subcommand
 import revxrsal.commands.bukkit.annotation.CommandPermission
 
-@Command("mines", "mine", "axmines")
+@Command("axmines")
 class AxMinesCommand {
 
     @Subcommand("reload")
