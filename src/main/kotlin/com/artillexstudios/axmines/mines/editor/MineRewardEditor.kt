@@ -108,6 +108,30 @@ class MineRewardEditor(val mine: Mine, val player: Player, val map: MutableMap<S
             Blocks(mine, player, map).open()
         })
 
+        val preventDrops = map.getOrDefault("prevent-drops", false) as? Boolean ?: false
+        gui.addItem(GuiItem(
+            ItemBuilder.create(if (preventDrops) Material.BARRIER else Material.HOPPER).setName("<color:#00AAFF>Prevent drops").setLore(
+                listOf(
+                    "",
+                    "<gray>> If enabled, blocks this reward applies to",
+                    "<gray>  never drop their default loot (regardless of chance).",
+                    "",
+                    "<gray>> <color:#00AAFF>Current: <status>",
+                    "",
+                    "<color:#00AAFF>Click to toggle!",
+                ), Placeholder.parsed("status", if (preventDrops) "<color:#00FF00>enabled" else "<color:#FF0000>disabled")
+            ).get()
+        ) {
+            mine.config.RANDOM_REWARDS.remove(map)
+            map["prevent-drops"] = !preventDrops
+            mine.config.RANDOM_REWARDS.add(map)
+            mine.config.config.set("random-rewards", mine.config.RANDOM_REWARDS)
+            mine.config.config.save()
+            mine.reload(false)
+
+            open()
+        })
+
         gui.open(player)
     }
 

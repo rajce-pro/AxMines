@@ -120,15 +120,12 @@ class Mine(val file: File, reset: Boolean = true) {
     fun onBlockBreak(player: Player, block: Block, event: BlockBreakEvent) {
         blocks--
 
-        val rewards = randomRewards(block)
-        if (rewards.isNotEmpty()) {
-            rewards.forEach {
-                if (it.preventDrops) {
-                    event.isDropItems = false
-                }
+        if (this.rewards.any { it.preventDrops && it.test(block) }) {
+            event.isDropItems = false
+        }
 
-                it.execute(player)
-            }
+        randomRewards(block).forEach {
+            it.execute(player)
         }
 
         val percent = blocks / volume * 100.0
