@@ -24,8 +24,8 @@ object TimeUtils {
             }
 
             2 -> {
-                if (days > 0) return days.toString() + AxMinesPlugin.MESSAGES.DAY
-                if (hours > 0) return hours.toString() + AxMinesPlugin.MESSAGES.HOUR
+                if (days > 0) return days.toString() + AxMinesPlugin.MESSAGES.DAY + " " + hours.toString() + AxMinesPlugin.MESSAGES.HOUR
+                if (hours > 0) return hours.toString() + AxMinesPlugin.MESSAGES.HOUR + " " + minutes.toString() + AxMinesPlugin.MESSAGES.MINUTE
                 if (minutes > 0) return minutes.toString() + AxMinesPlugin.MESSAGES.MINUTE
                 return seconds.toString() + AxMinesPlugin.MESSAGES.SECOND
             }

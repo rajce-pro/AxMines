@@ -48,7 +48,7 @@ public class MineConfig extends Messages {
     public int ACTION_BAR_RANGE = 10;
 
     @Key("timer-format")
-    @Comment({"The format of the time placeholder", "1 -> HH:MM:SS, for example 01:25:35", "2 -> short format, for example 20m", "3 - text format, for example 01h 25m 35s"})
+    @Comment({"The format of the time placeholder", "1 -> HH:MM:SS, for example 01:25:35", "2 -> short format, for example 20m or 1h 25m", "3 - text format, for example 01h 25m 35s"})
     public int TIMER_FORMAT = 2;
 
     @Key("setter")
